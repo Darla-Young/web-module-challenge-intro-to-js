@@ -20,7 +20,8 @@ Do the following:
    HINT: no function required
 */
 
-
+const votingAge = 19;
+console.log(votingAge >= 18 ? "true" : "false");
 
 /*
 Task 1b - Values (not auto tested)
@@ -34,9 +35,9 @@ Do the following:
    HINT: no function required
 */
 
-
-
-
+let firstThing = 2;
+const secondThing = 3;
+console.log(firstThing === secondThing ? firstThing + 1 : firstThing);
 
 /*
 Task 1c - Convert Strings to Numbers (not auto tested)
@@ -49,8 +50,9 @@ Do the following:
    HINT: look up the Number method
 */
 
-
-
+const year = "1999";
+parseInt(year);
+console.log(year);
 
 /*
 Task 1d - Multiply
@@ -65,7 +67,7 @@ function multiply(num1, num2){
   return num1 * num2;
 }
 
-
+multiply(3, 4);
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -77,11 +79,11 @@ Do the following:
  3. Return the newly calculated age
 */
 
-function dogYears(/*add your code here*/){
-  /*add your code here*/
+function dogYears(age){
+  return age * 7;
 }
 
-
+dogYears(3);
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -129,8 +131,17 @@ NOTE 2: This is a great time to check the tests to see what it expects, versus w
         So, on this one test, the weight would be 4 pounds, and the age would be 1 years old. It's expecting your function to return a decimal number of 0.2
 */  
 
-function hungryDog(/*add your code here*/){
-  /*add your code here*/
+function hungryDog(weight, age){
+  return (
+    age >= 1 ?
+      weight <= 5 ? weight * .05
+      : weight <= 10 ? weight * .04
+      : weight <= 15 ? weight * .03
+      : weight * .02
+    : age <= .33 ? weight * .1
+    : age <= .66 ? weight * .05
+    : weight * .04
+  )
 }
 
 
@@ -156,11 +167,20 @@ Use the game function below to do the following:
 RULES OF THE GAME: Scissors beats Paper | Paper beats Rock | Rock beats Scissors | Or there's a tie
 */
 
+const computer = Math.floor(Math.random() * 3);
+
 function game(user, computer){
-  /*add your code here*/
+  // computer === 0 ? computer = "rock"
+  //   : computer === 1 ? computer = "paper"
+  //   : computer = "scissors";
+  return (
+    user === computer ? "it's a tie"
+      : user === "rock" && computer === "scissors" ? "you win!"
+      : user === "paper" && computer === "rock" ? "you win!"
+      : user === "scissors" && computer === "paper" ? "you win!"
+      : "you lose!"
+  )
 }
-
-
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -173,11 +193,9 @@ Using the miles function below do the following:
 3. Return the number of miles
 */
 
-function miles(/*add your code here*/){
-  /*add your code here*/
+function miles(kilometers){
+  return kilometers * .621371
 }
-
-
 
 //Task 5b - Centimeters to Feet
 /*
@@ -187,11 +205,9 @@ Using the feet function below do the following:
 3. Return number of feet
 */
 
-function feet(/*add your code here*/){
-  /*add your code here*/
+function feet(cm){
+  return cm / 30.48
 }
-
-
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -207,10 +223,15 @@ Using the annoyingSong function below do the following:
 4. Each time the annoyingSong is run from this loop, it should console.log the string that was returned. 
 */
 
-function annoyingSong(/*add your code here*/){
-      /*add your code here*/
+function annoyingSong(start){
+  return (
+    `${start} bottles of soda on the wall, ${start} bottles of soda, take one down pass it around ${start - 1} bottles of soda on the wall`
+  )
 }
 
+for (let start = 9; start > 1; start--) {
+  console.log(annoyingSong(start));
+}
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -227,11 +248,15 @@ Using the grade function below do the following:
  below should return 'you got an F'
 */
 
-function grade(/*Your Code here */){
-/*Your Code here */
+function grade(score){
+  return (
+    score >= 90 ? "you got an A"
+      : score >= 80 ? "you got a B"
+      : score >= 70 ? "you got a C"
+      : score >= 60 ? "you got a D"
+      : "you got an F"
+  )
 }
-
-
 
 /*💪💪💪💪💪💪💪💪💪💪 Stretch 💪💪💪💪💪💪💪💪💪💪*/
 
@@ -246,9 +271,22 @@ HINT - try looking up the .includes() method
 */
 
 
-function vowelCounter(/*add your code here*/) {
-  /*add your code here*/
+function vowelCounter(string) {
+  const newString = string.toLowerCase();
+  // console.log(newString);
+  const stringArr = newString.split("");
+  // console.log(stringArr);
+  const vowels = ["a", "e", "i", "o", "u"];
+  let count = 0;
+  for (const element of newString) {
+    for (let i = 0; i < vowels.length; i++) {
+      element.includes(vowels[i]) ? count = count + 1 : count
+    }
+  }
+  return count;
 }
+
+console.log(vowelCounter("I am awesome!"));
 
 
 
